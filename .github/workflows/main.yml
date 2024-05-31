@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-win32:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build httpiness on Windows
+        run: |
+          npm install
+          npm run lint
+          npm run test
+          npm run build:prod
+
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build httpiness on macOS
+        run: |
+          npm install
+          npm run lint
+          npm run test
+          npm run build:prod

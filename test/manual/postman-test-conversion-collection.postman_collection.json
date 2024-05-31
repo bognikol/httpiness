@@ -1,0 +1,1309 @@
+{
+	"info": {
+		"_postman_id": "0ab98e51-3d62-4a6a-8f80-2ab16d86ad6f",
+		"name": "postman-test-conversion-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1632771"
+	},
+	"item": [
+		{
+			"name": "Body",
+			"item": [
+				{
+					"name": "None",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://httpbin.org/anything",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FormData",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "key1",
+									"value": "value1",
+									"type": "text"
+								},
+								{
+									"key": "key2",
+									"type": "file",
+									"src": [
+										"/Users/bogdannikolic/Desktop/new_collection.json",
+										"/Users/bogdannikolic/Desktop/notarize.js"
+									]
+								},
+								{
+									"key": "key3",
+									"type": "file",
+									"src": "/Users/bogdannikolic/Desktop/New Collection.postman_collection6.json"
+								},
+								{
+									"key": "key4",
+									"value": "{{param4}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://httpbin.org/anything",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UrlEncoded",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "key1",
+									"value": "value1",
+									"type": "text"
+								},
+								{
+									"key": "key2",
+									"value": "{{param2}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://httpbin.org/anything",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raw-Text",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Hello world\nLine1\nLine2\n\nLine3"
+						},
+						"url": {
+							"raw": "https://httpbin.org/anything",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raw-JSON",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bla\": \"blu\",\n    \"gle\": {\n        \"glo\": \"dfdf\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://httpbin.org/anything",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raw-XML",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<tag1 key1=\"value1\">\n    <tag2>param1<tag2>\n    <tag3>param2<tag3>\n    <tag4>param3<tag4>\n</tag1>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://httpbin.org/anything",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Binary",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/Users/bogdannikolic/Desktop/iMac - 13.png"
+							}
+						},
+						"url": {
+							"raw": "https://httpbin.org/anything",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GraphQL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "hello world query",
+								"variables": "hello world [variables]"
+							}
+						},
+						"url": {
+							"raw": "https://httpbin.org/anything",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"anything"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Supported",
+					"item": [
+						{
+							"name": "NoAuth",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ApiKey-Header",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{AUTH_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ApiKey-Query",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "in",
+											"value": "query",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{AUTH_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bearer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Basic",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "password",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "username",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OAuth2-AuthCode-BasicClientAuth",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "state",
+											"value": "some very cool state",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "scope1, scope2 scope3 {{SCOPE_4}} scope_5",
+											"type": "string"
+										},
+										{
+											"key": "clientSecret",
+											"value": "{{CLIENT_SECRET}}",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "client-id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "{{TOKEN_URL}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "AUTH_URL",
+											"type": "string"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "CALLBACK_URL",
+											"type": "string"
+										},
+										{
+											"key": "headerPrefix",
+											"value": "HeaderPrefix",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OAuth2-AuthCode-BodyClientAuth",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "HeaderPrefix",
+											"type": "string"
+										},
+										{
+											"key": "client_authentication",
+											"value": "body",
+											"type": "string"
+										},
+										{
+											"key": "state",
+											"value": "{{state}}",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "scope1, scope2 scope3 {{SCOPE_4}} scope_5",
+											"type": "string"
+										},
+										{
+											"key": "clientSecret",
+											"value": "client secret",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "{{client id}}",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "TOKEN_URL",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "AUTH_URL",
+											"type": "string"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{CALLBACK_URL}}",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OAuth2-AuthCodePKCE-SHA256",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "state",
+											"value": "state hello hello",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "scope1, scope2 scope3 {{SCOPE_4}} scope_5",
+											"type": "string"
+										},
+										{
+											"key": "clientSecret",
+											"value": "client secret",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "client id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "access token",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{auth_url}}",
+											"type": "string"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{CALLBACK_URL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code_with_pkce",
+											"type": "string"
+										},
+										{
+											"key": "headerPrefix",
+											"value": "HeaderPrefix",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OAuth2-AuthCodePKCE-Plain",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "challengeAlgorithm",
+											"value": "plain",
+											"type": "string"
+										},
+										{
+											"key": "state",
+											"value": "state hello hello",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "scope1, scope2 scope3 {{SCOPE_4}} scope_5",
+											"type": "string"
+										},
+										{
+											"key": "clientSecret",
+											"value": "client secret",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "client id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "access token",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{auth_url}}",
+											"type": "string"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{CALLBACK_URL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code_with_pkce",
+											"type": "string"
+										},
+										{
+											"key": "headerPrefix",
+											"value": "HeaderPrefix",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OAuth2-Implicit",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientId",
+											"value": "hell hello",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "AUTH _ URL",
+											"type": "string"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "CALLBACK URL",
+											"type": "string"
+										},
+										{
+											"key": "headerPrefix",
+											"value": "Header _ Prefix",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "implicit",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OAuth2-ClientCredentials",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "scope",
+											"value": "some scope scope scope",
+											"type": "string"
+										},
+										{
+											"key": "clientSecret",
+											"value": "secret",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "{{TOKEN_URL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "string"
+										},
+										{
+											"key": "headerPrefix",
+											"value": "header prefix 22",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OAuth2-DefaultHeaderPrefix",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "some scope scope scope",
+											"type": "string"
+										},
+										{
+											"key": "clientSecret",
+											"value": "secret",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "{{TOKEN_URL}}",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inherit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Unsupported",
+					"item": [
+						{
+							"name": "Digest",
+							"request": {
+								"auth": {
+									"type": "digest",
+									"digest": [
+										{
+											"key": "algorithm",
+											"value": "MD5",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OAuth1",
+							"request": {
+								"auth": {
+									"type": "oauth1",
+									"oauth1": [
+										{
+											"key": "tokenSecret",
+											"value": "aUXMa7qoAjHA5XJpo4EYb44b1wr8r1a2o8dHoHSfndCt6",
+											"type": "string"
+										},
+										{
+											"key": "token",
+											"value": "1122468199579123713-Zv3n6o1EPGHlnNqORlLFrgxiKBddh6",
+											"type": "string"
+										},
+										{
+											"key": "consumerSecret",
+											"value": "VEe6p7H0j26MlhguPOvUibzL2mqWHrOJkM1GB1cULhFFblqpH2",
+											"type": "string"
+										},
+										{
+											"key": "consumerKey",
+											"value": "qKG16VSZMX9iiEGJReFLl9aEQ",
+											"type": "string"
+										},
+										{
+											"key": "disableHeaderEncoding",
+											"value": false,
+											"type": "boolean"
+										},
+										{
+											"key": "addParamsToHeader",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "signatureMethod",
+											"value": "HMAC-SHA1",
+											"type": "string"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "string"
+										},
+										{
+											"key": "addEmptyParamsToSign",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hawk",
+							"request": {
+								"auth": {
+									"type": "hawk",
+									"hawk": [
+										{
+											"key": "algorithm",
+											"value": "sha256",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AWS",
+							"request": {
+								"auth": {
+									"type": "awsv4"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "NTLM",
+							"request": {
+								"auth": {
+									"type": "ntlm"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "EdgeGrid",
+							"request": {
+								"auth": {
+									"type": "edgegrid"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/anything",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "ThisIsInherited",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Inherit",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Folder with authorization",
+			"item": [],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "world",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "hello",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Headers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "key1",
+						"value": "value1",
+						"type": "text"
+					},
+					{
+						"key": "{{param1}} key2 {{param3}}",
+						"value": "{{param4}} value2 {{param5}}",
+						"type": "text"
+					},
+					{
+						"key": "key3",
+						"value": "value3",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "key4",
+						"value": "value4",
+						"type": "text"
+					},
+					{
+						"key": "{{key5}}",
+						"value": "{{value6}} addendum",
+						"type": "text"
+					}
+				]
+			},
+			"response": []
+		},
+		{
+			"name": "URL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.httpbin.oth/anything?key1=value1&key2={{value2}}&key4=value4#itsahash",
+					"protocol": "https",
+					"host": [
+						"www",
+						"httpbin",
+						"oth"
+					],
+					"path": [
+						"anything"
+					],
+					"query": [
+						{
+							"key": "key1",
+							"value": "value1"
+						},
+						{
+							"key": "key2",
+							"value": "{{value2}}"
+						},
+						{
+							"key": "key3",
+							"value": "value3",
+							"disabled": true
+						},
+						{
+							"key": "key4",
+							"value": "value4"
+						}
+					],
+					"hash": "itsahash"
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "param4",
+			"value": "param4_VALUE"
+		}
+	]
+}

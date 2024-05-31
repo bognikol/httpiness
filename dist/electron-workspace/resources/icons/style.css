@@ -1,0 +1,153 @@
+@font-face {
+  font-family: 'rapids-icons';
+  src:  url('fonts/rapids-icons.eot?rhn1ft');
+  src:  url('fonts/rapids-icons.eot?rhn1ft#iefix') format('embedded-opentype'),
+    url('fonts/rapids-icons.ttf?rhn1ft') format('truetype'),
+    url('fonts/rapids-icons.woff?rhn1ft') format('woff'),
+    url('fonts/rapids-icons.svg?rhn1ft#rapids-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ri-"], [class*=" ri-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'rapids-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ri-options:before {
+  content: "\e929";
+}
+.ri-timer:before {
+  content: "\e928";
+}
+.ri-upload:before {
+  content: "\e925";
+}
+.ri-sync:before {
+  content: "\e926";
+}
+.ri-download:before {
+  content: "\e927";
+}
+.ri-preset:before {
+  content: "\e924";
+}
+.ri-save:before {
+  content: "\e91d";
+}
+.ri-undo:before {
+  content: "\e922";
+}
+.ri-req:before {
+  content: "\e921";
+}
+.ri-checkmark:before {
+  content: "\e920";
+}
+.ri-send:before {
+  content: "\e91f";
+}
+.ri-eye:before {
+  content: "\e91e";
+}
+.ri-experiment:before {
+  content: "\e923";
+}
+.ri-docs:before {
+  content: "\e91b";
+}
+.ri-import-3rd:before {
+  content: "\e91c";
+}
+.ri-search:before {
+  content: "\e91a";
+}
+.ri-restart:before {
+  content: "\e919";
+}
+.ri-more:before {
+  content: "\e918";
+}
+.ri-lock:before {
+  content: "\e900";
+}
+.ri-collapse-all:before {
+  content: "\e901";
+}
+.ri-delete:before {
+  content: "\e902";
+}
+.ri-file-solid:before {
+  content: "\e903";
+}
+.ri-file-void:before {
+  content: "\e904";
+}
+.ri-import:before {
+  content: "\e905";
+}
+.ri-inherit:before {
+  content: "\e906";
+}
+.ri-local:before {
+  content: "\e907";
+}
+.ri-new-dir:before {
+  content: "\e908";
+}
+.ri-new-file:before {
+  content: "\e909";
+}
+.ri-new-req:before {
+  content: "\e90a";
+}
+.ri-pin:before {
+  content: "\e90b";
+}
+.ri-result:before {
+  content: "\e90c";
+}
+.ri-save1:before {
+  content: "\e90d";
+}
+.ri-settings:before {
+  content: "\e90e";
+}
+.ri-close:before {
+  content: "\e90f";
+}
+.ri-exitfullscreen:before {
+  content: "\e910";
+}
+.ri-fullscreen:before {
+  content: "\e911";
+}
+.ri-maximize:before {
+  content: "\e912";
+}
+.ri-minimize:before {
+  content: "\e913";
+}
+.ri-restore:before {
+  content: "\e914";
+}
+.ri-clear:before {
+  content: "\e915";
+}
+.ri-say:before {
+  content: "\e916";
+}
+.ri-update:before {
+  content: "\e917";
+}

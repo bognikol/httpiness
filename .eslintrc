@@ -1,0 +1,62 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "eslint-plugin-tsdoc"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "overrides": [
+        {
+            "files": ["**.ts"],
+            "excludedFiles": ["**.js"],
+            "rules": {
+                "no-prototype-builtins": "off",
+
+                "prefer-const": "off",
+                "block-spacing": "warn",
+                "brace-style": ["warn", "1tbs"],
+                "camelcase": "warn",
+                "comma-dangle": ["warn", "never"],
+                "comma-spacing": ["warn", { "before": false, "after": true }],
+                "comma-style": ["warn", "last"],
+                "consistent-return": "error",
+                "eol-last": ["warn", "always"],
+                "func-call-spacing": ["warn", "never"],
+                "indent": ["warn", 4, { "SwitchCase": 1 }],
+                "keyword-spacing": ["warn", { "before": true, "after": true }],
+                "lines-between-class-members": [ "warn", "always", { "exceptAfterSingleLine": true } ],
+                "no-trailing-spaces": "warn",
+                "quotes": ["warn", "double"],
+                "semi": ["error", "always"],
+                "semi-style": ["warn", "last"],
+                "space-before-blocks": "warn",
+                "no-var": "warn",
+
+                "@typescript-eslint/no-explicit-any": "off",
+                "@typescript-eslint/no-empty-interface": "off",
+                "@typescript-eslint/explicit-module-boundary-types": ["warn", { "allowArgumentsExplicitlyTypedAsAny": true }],
+                "@typescript-eslint/no-inferrable-types": "off",
+                "@typescript-eslint/member-ordering": "warn",
+                "@typescript-eslint/explicit-function-return-type": "error",
+                "@typescript-eslint/no-unsafe-return": "error",
+                "@typescript-eslint/naming-convention": [
+                    "warn",
+                    { "selector": "objectLiteralProperty", "modifiers": [ "requiresQuotes" ], "format": null },
+                    { "selector": "memberLike", "modifiers": [ "public" ], "format": ["camelCase"], "leadingUnderscore": "allow" },
+                    { "selector": "memberLike", "modifiers": [ "protected" ], "format": ["camelCase"], "leadingUnderscore": "require" },
+                    { "selector": "memberLike", "modifiers": [ "private" ], "format": ["camelCase"], "leadingUnderscore": "require" }
+                ],
+
+                "tsdoc/syntax": "warn"
+            }
+        }
+    ]
+}

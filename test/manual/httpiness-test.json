@@ -1,0 +1,1777 @@
+{
+  "collectionVersion": "httpiness/JSON/0.11",
+  "uuid": "5f2ff16c-853c-4d92-8bce-3580eb2d597b",
+  "authChildren": [],
+  "dirChildren": [
+    {
+      "name": "Authentication",
+      "authChildren": [],
+      "reqtChildren": [
+        {
+          "name": "None",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "ApiKey - Header",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "ApiKey",
+              "apiKey": "${API_KEY}"
+            },
+            "location": {
+              "type": "Header",
+              "key": "HeaderName",
+              "prefix": ""
+            }
+          }
+        },
+        {
+          "name": "ApiKey - Query",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "ApiKey",
+              "apiKey": "${API_KEY}"
+            },
+            "location": {
+              "type": "UrlQuery",
+              "key": "queryName",
+              "prefix": ""
+            }
+          }
+        },
+        {
+          "name": "Bearer",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/bearer",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "Bearer",
+              "bearerToken": "${BEARER_TOKEN}"
+            }
+          }
+        },
+        {
+          "name": "Basic",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/basic-auth/${BASIC_USERNAME}/${BASIC_PASSWORD}",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "Basic",
+              "username": "${BASIC_USERNAME}",
+              "password": "${BASIC_PASSWORD}"
+            },
+            "location": null
+          }
+        }
+      ],
+      "dirChildren": [
+        {
+          "name": "OAuth2",
+          "authChildren": [],
+          "reqtChildren": [],
+          "dirChildren": [
+            {
+              "name": "Box",
+              "authChildren": [
+                {
+                  "name": "AuthorizationCode",
+                  "authDef": {
+                    "type": "OAuth2",
+                    "oauth2Type": "AuthorizationCode",
+                    "codeChallengeMethod": "None",
+                    "callbackURL": "https://localhost:8000",
+                    "authURL": "https://account.box.com/api/oauth2/authorize",
+                    "accessTokenURL": "https://api.box.com/oauth2/token",
+                    "clientID": "${BOX_CLIENT_ID}",
+                    "clientSecret": "${BOX_CLIENT_SECRET}",
+                    "clientAuthentication": "InBody",
+                    "scope": "root_readwrite",
+                    "state": ""
+                  },
+                  "location": null
+                }
+              ],
+              "reqtChildren": [
+                {
+                  "name": "Folder",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://api.box.com/2.0/folders/${BOX_FOLDER_ID}",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Box/AuthorizationCode"
+                },
+                {
+                  "name": "Revoke",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://api.box.com/oauth2/revoke",
+                    "headers": [],
+                    "body": {
+                      "type": "Form",
+                      "encoding": "application/x-www-form-urlencoded",
+                      "records": [
+                        {
+                          "name": "client_id",
+                          "value": "${BOX_CLIENT_ID}",
+                          "type": "Text"
+                        },
+                        {
+                          "name": "client_secret",
+                          "value": "${BOX_CLIENT_SECRET}",
+                          "type": "Text"
+                        },
+                        {
+                          "name": "token",
+                          "value": "${BOX_TOKEN}",
+                          "type": "Text"
+                        }
+                      ]
+                    }
+                  },
+                  "defaultBody": {
+                    "type": "Form",
+                    "encoding": "application/x-www-form-urlencoded",
+                    "records": [
+                      {
+                        "name": "client_id",
+                        "value": "${BOX_CLIENT_ID}",
+                        "type": "Text"
+                      },
+                      {
+                        "name": "client_secret",
+                        "value": "${BOX_CLIENT_SECRET}",
+                        "type": "Text"
+                      },
+                      {
+                        "name": "token",
+                        "value": "${BOX_TOKEN}",
+                        "type": "Text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "AuthLoopback",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://www.httpbin.org/anything?fields=&usemarker=&marker=&offset=&limit=&sort=&direction=",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Box/AuthorizationCode"
+                },
+                {
+                  "name": "List items in folder",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://api.box.com/2.0/folders/${BOX_FOLDER_ID}/items?fields=&usemarker=&marker=&offset=&limit=&sort=&direction=",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Box/AuthorizationCode"
+                },
+                {
+                  "name": "Upload file",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://upload.box.com/api/2.0/files/content?fields=",
+                    "headers": [
+                      {
+                        "name": "Content-Type",
+                        "value": "multipart/form-data"
+                      }
+                    ],
+                    "body": {
+                      "type": "Form",
+                      "encoding": "multipart/form-data",
+                      "records": [
+                        {
+                          "name": "attributes",
+                          "value": "{\n  \"name\": \"${BOX_FILE_NAME}\",\n  \"parent\": {\n    \"id\": \"${BOX_FOLDER_ID}\"\n  }\n}",
+                          "type": "Text"
+                        },
+                        {
+                          "name": "file",
+                          "value": "C:\\Users\\bogdan.nikolic\\OneDrive - ENDAVA\\Desktop\\sample2.json",
+                          "type": "File"
+                        }
+                      ]
+                    }
+                  },
+                  "defaultBody": {
+                    "type": "Form",
+                    "encoding": "multipart/form-data",
+                    "records": [
+                      {
+                        "name": "attributes",
+                        "value": "{\n  \"name\": \"${BOX_FILE_NAME}\",\n  \"parent\": {\n    \"id\": \"${BOX_FOLDER_ID}\"\n  }\n}",
+                        "type": "Text"
+                      },
+                      {
+                        "name": "file",
+                        "value": "C:\\Users\\Bogdan Nikolic\\Desktop\\dryrun to do.txt",
+                        "type": "File"
+                      }
+                    ]
+                  },
+                  "auth": "/Authentication/OAuth2/Box/AuthorizationCode"
+                },
+                {
+                  "name": "Get file information",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://api.box.com/2.0/files/${BOX_FILE_ID}?fields=",
+                    "headers": [
+                      {
+                        "name": "x-rep-hints",
+                        "value": "[pdf]"
+                      }
+                    ],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Box/AuthorizationCode"
+                },
+                {
+                  "name": "Get file thumbnail",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://api.box.com/2.0/files/${BOX_FILE_ID}/thumbnail.:extension?min_height=&min_width=&max_height=&max_width=",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Box/AuthorizationCode"
+                },
+                {
+                  "name": "Download file",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://api.box.com/2.0/files/${BOX_FILE_ID}/content?version=&access_token=",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Box/AuthorizationCode"
+                }
+              ],
+              "dirChildren": []
+            },
+            {
+              "name": "Dropbox",
+              "authChildren": [
+                {
+                  "name": "AuthorizationCode",
+                  "authDef": {
+                    "type": "OAuth2",
+                    "oauth2Type": "AuthorizationCode",
+                    "codeChallengeMethod": "None",
+                    "callbackURL": "https://localhost:8000",
+                    "authURL": "https://www.dropbox.com/oauth2/authorize",
+                    "accessTokenURL": "https://api.dropboxapi.com/oauth2/token",
+                    "clientID": "${DROPBOX_APP_KEY}",
+                    "clientSecret": "${DROPBOX_APP_SECRET}",
+                    "clientAuthentication": "InBody",
+                    "scope": "",
+                    "state": ""
+                  },
+                  "location": null
+                },
+                {
+                  "name": "Implicit",
+                  "authDef": {
+                    "type": "OAuth2",
+                    "oauth2Type": "Implicit",
+                    "callbackURL": "https://localhost:8000",
+                    "authURL": "https://www.dropbox.com/oauth2/authorize",
+                    "accessTokenURL": "https://api.dropboxapi.com/oauth2/token",
+                    "clientID": "${DROPBOX_APP_KEY}",
+                    "clientSecret": "${DROPBOX_APP_SECRET}",
+                    "scope": "",
+                    "state": "",
+                    "clientAuthentication": ""
+                  }
+                },
+                {
+                  "name": "PKCE",
+                  "authDef": {
+                    "type": "OAuth2",
+                    "oauth2Type": "AuthorizationCode",
+                    "codeChallengeMethod": "SHA256",
+                    "callbackURL": "https://localhost:8000",
+                    "authURL": "https://www.dropbox.com/oauth2/authorize",
+                    "accessTokenURL": "https://api.dropboxapi.com/oauth2/token",
+                    "clientID": "${DROPBOX_APP_KEY}",
+                    "clientSecret": "${DROPBOX_APP_SECRET}",
+                    "clientAuthentication": "InBody",
+                    "scope": "",
+                    "state": ""
+                  },
+                  "location": null
+                }
+              ],
+              "reqtChildren": [
+                {
+                  "name": "GetCurrentAccount",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://api.dropboxapi.com/2/users/get_current_account",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Dropbox/PKCE"
+                },
+                {
+                  "name": "RevokeToken",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://api.dropboxapi.com/2/auth/token/revoke",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Dropbox/PKCE"
+                },
+                {
+                  "name": "AuthLoopback",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://www.httpbin.org/anything",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Dropbox/PKCE"
+                },
+                {
+                  "name": "ListFolder",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://api.dropboxapi.com/2/files/list_folder",
+                    "headers": [
+                      {
+                        "name": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "type": "Regular",
+                      "value": "{\n    \"path\": \"${DROPBOX_DIR_PATH}\"\n}",
+                      "valueType": "Text"
+                    }
+                  },
+                  "defaultBody": {
+                    "type": "Regular",
+                    "value": "{\n    \"path\": \"\", \n    \"recursive\": false, \n    \"include_media_info\": true, \n    \"include_deleted\": false, \n    \"include_has_explicit_shared_members\": false, \n    \"include_mounted_folders\": true, \n    \"include_non_downloadable_files\": true\n}",
+                    "valueType": "Text"
+                  },
+                  "auth": "/Authentication/OAuth2/Dropbox/PKCE"
+                },
+                {
+                  "name": "Upload",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://content.dropboxapi.com/2/files/upload",
+                    "headers": [
+                      {
+                        "name": "Dropbox-API-Arg",
+                        "value": "{\"autorename\":false,\"mode\":\"add\",\"mute\":false,\"path\":\"${DROPBOX_FILE_PATH}\",\"strict_conflict\":false}"
+                      },
+                      {
+                        "name": "Content-Type",
+                        "value": "application/octet-stream"
+                      }
+                    ],
+                    "body": {
+                      "type": "Regular",
+                      "value": "C:\\Users\\bogdan.nikolic\\OneDrive - ENDAVA\\Desktop\\versionManagerdesign.png",
+                      "valueType": "File"
+                    }
+                  },
+                  "defaultBody": {
+                    "type": "Regular",
+                    "value": "C:\\Users\\Bogdan Nikolic\\Desktop\\dryrun to do.txt",
+                    "valueType": "File"
+                  },
+                  "auth": "/Authentication/OAuth2/Dropbox/PKCE"
+                },
+                {
+                  "name": "GetPreview",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://content.dropboxapi.com/2/files/get_preview",
+                    "headers": [
+                      {
+                        "name": "Dropbox-API-Arg",
+                        "value": "{\"path\":\"${DROPBOX_FILE_PATH}\"}"
+                      }
+                    ],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Dropbox/PKCE"
+                },
+                {
+                  "name": "GetThumbnail",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://content.dropboxapi.com/2/files/get_thumbnail_v2",
+                    "headers": [
+                      {
+                        "name": "Dropbox-API-Arg",
+                        "value": "{\"format\":\"jpeg\",\"mode\":\"strict\",\"resource\":{\".tag\":\"path\",\"path\":\"${DROPBOX_FILE_PATH}\"},\"size\":\"${DROPBOX_THUMBNAIL_SIZE}\"}"
+                      }
+                    ],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Dropbox/PKCE"
+                },
+                {
+                  "name": "Download",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://content.dropboxapi.com/2/files/download",
+                    "headers": [
+                      {
+                        "name": "Dropbox-API-Arg",
+                        "value": "{\"path\":\"${DROPBOX_FILE_PATH}\"}"
+                      }
+                    ],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Dropbox/PKCE"
+                }
+              ],
+              "dirChildren": []
+            },
+            {
+              "name": "PetFinder",
+              "authChildren": [
+                {
+                  "name": "ClientCredentials",
+                  "authDef": {
+                    "type": "OAuth2",
+                    "oauth2Type": "ClientCredentials",
+                    "codeChallengeMethod": "None",
+                    "callbackURL": "",
+                    "authURL": "",
+                    "accessTokenURL": "https://api.petfinder.com/v2/oauth2/token",
+                    "clientID": "${PF_CLIENT_ID}",
+                    "clientSecret": "${PF_CLIENT_SECRET}",
+                    "clientAuthentication": "BasicAuthentication",
+                    "scope": "",
+                    "state": ""
+                  },
+                  "location": null
+                }
+              ],
+              "reqtChildren": [
+                {
+                  "name": "Animals",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://api.petfinder.com/v2/animals",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/PetFinder/ClientCredentials"
+                },
+                {
+                  "name": "AuthLoopback",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://www.httpbin.org/anything",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/PetFinder/ClientCredentials"
+                }
+              ],
+              "dirChildren": []
+            },
+            {
+              "name": "Twitter",
+              "authChildren": [
+                {
+                  "name": "PKCE",
+                  "authDef": {
+                    "type": "OAuth2",
+                    "oauth2Type": "AuthorizationCode",
+                    "codeChallengeMethod": "SHA256",
+                    "callbackURL": "https://localhost:8000",
+                    "authURL": "https://twitter.com/i/oauth2/authorize",
+                    "accessTokenURL": "https://api.twitter.com/2/oauth2/token",
+                    "clientID": "${TWITTER_CLIENT_ID}",
+                    "clientSecret": "${TWITTER_CLIENT_SECRET}",
+                    "clientAuthentication": "BasicAuthentication",
+                    "scope": "users.read tweet.read",
+                    "state": "something"
+                  },
+                  "location": null
+                }
+              ],
+              "reqtChildren": [
+                {
+                  "name": "My user",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://api.twitter.com/2/users/me",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Twitter/PKCE"
+                },
+                {
+                  "name": "Revoke",
+                  "rawRequest": {
+                    "method": "POST",
+                    "url": "https://api.twitter.com/2/oauth2/revoke",
+                    "headers": [
+                      {
+                        "name": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "body": {
+                      "type": "Form",
+                      "encoding": "application/x-www-form-urlencoded",
+                      "records": [
+                        {
+                          "type": "Text",
+                          "name": "token",
+                          "value": "${TWITTER_TOKEN}"
+                        },
+                        {
+                          "type": "Text",
+                          "name": "token_type_hint",
+                          "value": "access_token"
+                        }
+                      ]
+                    }
+                  },
+                  "defaultBody": {
+                    "type": "Form",
+                    "encoding": "application/x-www-form-urlencoded",
+                    "records": [
+                      {
+                        "name": "token",
+                        "value": "${TWITTER_TOKEN}",
+                        "type": "Text"
+                      },
+                      {
+                        "name": "token_type_hint",
+                        "value": "access_token",
+                        "type": "Text"
+                      }
+                    ]
+                  },
+                  "auth": {
+                    "name": null,
+                    "authDef": {
+                      "type": "Basic",
+                      "username": "${TWITTER_CLIENT_ID}",
+                      "password": "${TWITTER_CLIENT_SECRET}"
+                    },
+                    "location": null
+                  }
+                },
+                {
+                  "name": "Loopback token",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://httpbin.org/anything",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Twitter/PKCE"
+                }
+              ],
+              "dirChildren": []
+            },
+            {
+              "name": "Github",
+              "authChildren": [
+                {
+                  "name": "PKCE",
+                  "authDef": {
+                    "type": "OAuth2",
+                    "oauth2Type": "AuthorizationCode",
+                    "codeChallengeMethod": "SHA256",
+                    "callbackURL": "https://localhost:8000",
+                    "authURL": "https://github.com/login/oauth/authorize",
+                    "accessTokenURL": "https://github.com/login/oauth/access_token",
+                    "clientID": "${GITHUB_CLIENT_ID}",
+                    "clientSecret": "${GITHUB_CLIENT_SECRET}",
+                    "clientAuthentication": "BasicAuthentication",
+                    "scope": "",
+                    "state": ""
+                  },
+                  "location": {
+                    "type": "Header",
+                    "key": "Authorization",
+                    "prefix": "token"
+                  }
+                }
+              ],
+              "reqtChildren": [
+                {
+                  "name": "Authenticated user",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://api.github.com/user",
+                    "headers": [
+                      {
+                        "name": "Accept",
+                        "value": "application/vnd.github+json"
+                      }
+                    ],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Github/PKCE"
+                },
+                {
+                  "name": "Delete app authentication",
+                  "rawRequest": {
+                    "method": "DELETE",
+                    "url": "https://api.github.com/applications/${GITHUB_CLIENT_ID}/token",
+                    "headers": [
+                      {
+                        "name": "Accept",
+                        "value": "application/vnd.github+json"
+                      },
+                      {
+                        "name": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "type": "Regular",
+                      "value": "{\n  \"access_token\": \"${GITHUB_ACCESS_TOKEN}\"\n}",
+                      "valueType": "Text"
+                    }
+                  },
+                  "defaultBody": {
+                    "type": "Regular",
+                    "value": "{\n  \"access_token\": \"${GITHUB_ACCESS_TOKEN}\"\n}",
+                    "valueType": "Text"
+                  },
+                  "auth": {
+                    "name": null,
+                    "authDef": {
+                      "type": "Basic",
+                      "username": "${GITHUB_CLIENT_ID}",
+                      "password": "${GITHUB_CLIENT_SECRET}"
+                    },
+                    "location": null
+                  }
+                },
+                {
+                  "name": "Loopback token",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://httpbin.org/anything",
+                    "headers": [],
+                    "body": null
+                  },
+                  "auth": "/Authentication/OAuth2/Github/PKCE"
+                }
+              ],
+              "dirChildren": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MacroSubstitution",
+      "authChildren": [],
+      "reqtChildren": [
+        {
+          "name": "URL & Headers",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/anything?not_sent=${NOT_SENT}&${QKEY_1}=&${QKEY_2}=${QVAL_2}&11${QKEY_3a}22${QKEY_3b}33=11${QVAL_3a}22${QVAL_3b}33",
+            "headers": [
+              {
+                "name": "Key1",
+                "value": "Value1"
+              },
+              {
+                "name": "Key2",
+                "value": "${VALUE_2}"
+              },
+              {
+                "name": "${KEY_3}",
+                "value": "Value3"
+              },
+              {
+                "name": "${KEY_4}",
+                "value": "${VALUE_4}"
+              },
+              {
+                "name": "11${KEY_5a}22${KEY_5b}33",
+                "value": "11${VALUE_5a}22${VALUE_5b}33"
+              }
+            ],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "Body Plain",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "type": "Regular",
+              "value": "{\n  \"Key1\" : \"Value1\",\n  \"Key2\" : \"${VALUE_2}\",\n  \"${KEY_3}\" : \"Value3\",\n  \"${KEY_4}\" : \"${VALUE_4}\",\n  \"11${KEY_5a}22${KEY_5b}33\": \"11${VALUE_5a}22${VALUE_5b}33\"\n}",
+              "valueType": "Text"
+            }
+          },
+          "defaultBody": {
+            "type": "Regular",
+            "value": "{\n  \"Key1\" : \"Value1\",\n  \"Key2\" : \"${VALUE_2}\",\n  \"${KEY_3}\" : \"Value3\",\n  \"${KEY_4}\" : \"${VALUE_4}\",\n  \"11${KEY_5a}22${KEY_5b}33\": \"11${VALUE_5a}22${VALUE_5b}33\"\n}",
+            "valueType": "Text"
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "Body Single File",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "text/plain"
+              }
+            ],
+            "body": {
+              "type": "Regular",
+              "value": "PayloadTextFile.txt",
+              "valueType": "File"
+            }
+          },
+          "defaultBody": {
+            "type": "Regular",
+            "value": "PayloadTextFile.txt",
+            "valueType": "File"
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "Body URL Encoded - empty values",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Form",
+              "encoding": "application/x-www-form-urlencoded",
+              "records": [
+                {
+                  "name": "not_sent",
+                  "value": "${NOT_SENT}",
+                  "type": "Text"
+                },
+                {
+                  "name": "${QKEY_1}",
+                  "value": "",
+                  "type": "Text"
+                },
+                {
+                  "name": "${QKEY_2}",
+                  "value": "${QVAL_2}",
+                  "type": "Text"
+                },
+                {
+                  "name": "11${QKEY_3a}22${QKEY_3b}33",
+                  "value": "11${QVAL_3a}22${QVAL_3b}33",
+                  "type": "Text"
+                }
+              ]
+            }
+          },
+          "defaultBody": {
+            "type": "Form",
+            "encoding": "multipart/form-data",
+            "records": [
+              {
+                "name": "not_sent",
+                "value": "${NOT_SENT}",
+                "type": "Text"
+              },
+              {
+                "name": "${QKEY_1}",
+                "value": "",
+                "type": "Text"
+              },
+              {
+                "name": "${QKEY_2}",
+                "value": "${QVAL_2}",
+                "type": "Text"
+              },
+              {
+                "name": "11${QKEY_3a}22${QKEY_3b}33",
+                "value": "11${QVAL_3a}22${QVAL_3b}33",
+                "type": "Text"
+              }
+            ]
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "Body URL Encode - files and lines",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Form",
+              "encoding": "application/x-www-form-urlencoded",
+              "records": [
+                {
+                  "name": "Key1",
+                  "value": "Value1",
+                  "type": "Text"
+                },
+                {
+                  "name": "Key2",
+                  "value": "${VALUE_2}",
+                  "type": "Text"
+                },
+                {
+                  "name": "${KEY_3}",
+                  "value": "Value3",
+                  "type": "Text"
+                },
+                {
+                  "name": "${KEY_4}",
+                  "value": "${VALUE_4}",
+                  "type": "Text"
+                },
+                {
+                  "name": "11${KEY_5a}22${KEY_5b}33",
+                  "value": "11${VALUE_5a}22${VALUE_5b}33",
+                  "type": "Text"
+                },
+                {
+                  "name": "Multiline",
+                  "value": "Line 1\nLine 2\nLine 3",
+                  "type": "Text"
+                },
+                {
+                  "name": "Multiline with macros",
+                  "value": "Line 1\n${LINE_2}\nLine 3",
+                  "type": "Text"
+                },
+                {
+                  "name": "File",
+                  "value": "PayloadTextFile.txt",
+                  "type": "File"
+                }
+              ]
+            }
+          },
+          "defaultBody": {
+            "type": "Form",
+            "encoding": "multipart/form-data",
+            "records": [
+              {
+                "name": "Key1",
+                "value": "Value1",
+                "type": "Text"
+              },
+              {
+                "name": "Key2",
+                "value": "${VALUE_2}",
+                "type": "Text"
+              },
+              {
+                "name": "${KEY_3}",
+                "value": "Value3",
+                "type": "Text"
+              },
+              {
+                "name": "${KEY_4}",
+                "value": "${VALUE_4}",
+                "type": "Text"
+              },
+              {
+                "name": "11${KEY_5a}22${KEY_5b}33",
+                "value": "11${VALUE_5a}22${VALUE_5b}33",
+                "type": "Text"
+              },
+              {
+                "name": "Multiline",
+                "value": "Line 1\nLine 2\nLine 3",
+                "type": "Text"
+              },
+              {
+                "name": "Multiline with macros",
+                "value": "Line 1\n${LINE_2}\nLine 3",
+                "type": "Text"
+              },
+              {
+                "name": "File",
+                "value": "PayloadTextFile.txt",
+                "type": "File"
+              }
+            ]
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "Body Form - empty values",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Form",
+              "encoding": "multipart/form-data",
+              "records": [
+                {
+                  "name": "not_sent",
+                  "value": "${NOT_SENT}",
+                  "type": "Text"
+                },
+                {
+                  "name": "${QKEY_1}",
+                  "value": "",
+                  "type": "Text"
+                },
+                {
+                  "name": "${QKEY_2}",
+                  "value": "${QVAL_2}",
+                  "type": "Text"
+                },
+                {
+                  "name": "11${QKEY_3a}22${QKEY_3b}33",
+                  "value": "11${QVAL_3a}22${QVAL_3b}33",
+                  "type": "Text"
+                }
+              ]
+            }
+          },
+          "defaultBody": {
+            "type": "Form",
+            "encoding": "multipart/form-data",
+            "records": [
+              {
+                "name": "not_sent",
+                "value": "${NOT_SENT}",
+                "type": "Text"
+              },
+              {
+                "name": "${QKEY_1}",
+                "value": "",
+                "type": "Text"
+              },
+              {
+                "name": "${QKEY_2}",
+                "value": "${QVAL_2}",
+                "type": "Text"
+              },
+              {
+                "name": "11${QKEY_3a}22${QKEY_3b}33",
+                "value": "11${QVAL_3a}22${QVAL_3b}33",
+                "type": "Text"
+              }
+            ]
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "Body Form - files and lines",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Form",
+              "encoding": "multipart/form-data",
+              "records": [
+                {
+                  "name": "Key1",
+                  "value": "Value1",
+                  "type": "Text"
+                },
+                {
+                  "name": "Key2",
+                  "value": "${VALUE_2}",
+                  "type": "Text"
+                },
+                {
+                  "name": "${KEY_3}",
+                  "value": "Value3",
+                  "type": "Text"
+                },
+                {
+                  "name": "${KEY_4}",
+                  "value": "${VALUE_4}",
+                  "type": "Text"
+                },
+                {
+                  "name": "11${KEY_5a}22${KEY_5b}33",
+                  "value": "11${VALUE_5a}22${VALUE_5b}33",
+                  "type": "Text"
+                },
+                {
+                  "name": "Multiline",
+                  "value": "Line 1\nLine 2\nLine 3",
+                  "type": "Text"
+                },
+                {
+                  "name": "Multiline with macros",
+                  "value": "Line 1\n${LINE_2}\nLine 3",
+                  "type": "Text"
+                },
+                {
+                  "name": "File",
+                  "value": "PayloadTextFile.txt",
+                  "type": "File"
+                }
+              ]
+            }
+          },
+          "defaultBody": {
+            "type": "Form",
+            "encoding": "multipart/form-data",
+            "records": [
+              {
+                "name": "Key1",
+                "value": "Value1",
+                "type": "Text"
+              },
+              {
+                "name": "Key2",
+                "value": "${VALUE_2}",
+                "type": "Text"
+              },
+              {
+                "name": "${KEY_3}",
+                "value": "Value3",
+                "type": "Text"
+              },
+              {
+                "name": "${KEY_4}",
+                "value": "${VALUE_4}",
+                "type": "Text"
+              },
+              {
+                "name": "11${KEY_5a}22${KEY_5b}33",
+                "value": "11${VALUE_5a}22${VALUE_5b}33",
+                "type": "Text"
+              },
+              {
+                "name": "Multiline",
+                "value": "Line 1\nLine 2\nLine 3",
+                "type": "Text"
+              },
+              {
+                "name": "Multiline with macros",
+                "value": "Line 1\n${LINE_2}\nLine 3",
+                "type": "Text"
+              },
+              {
+                "name": "File",
+                "value": "PayloadTextFile.txt",
+                "type": "File"
+              }
+            ]
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "Presets",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/anything?key1=${PRESET_VALUE1}&key2=${PRESET_VALUE2}&key3=${PRESET_VALUE3}",
+            "headers": [],
+            "body": null
+          }
+        }
+      ],
+      "dirChildren": []
+    },
+    {
+      "name": "ResponsePayloadPreview",
+      "authChildren": [],
+      "reqtChildren": [
+        {
+          "name": "PayloadHTML",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/html",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "PayloadJSON",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/json",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "PayloadXML",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/xml",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "PayloadUTF8",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/encoding/utf8",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "PayloadGZIP",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/gzip",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "PayloadBrotli",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/brotli",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "PayloadDeflate",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/deflate",
+            "headers": [],
+            "body": null
+          },
+          "auth": {
+            "name": null,
+            "authDef": {
+              "type": "None"
+            }
+          }
+        },
+        {
+          "name": "PayloadPDF",
+          "rawRequest": {
+            "method": "GET",
+            "url": "http://www.pdf995.com/samples/pdf.pdf",
+            "headers": [],
+            "body": null
+          }
+        },
+        {
+          "name": "PayloadPNG",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/image/png",
+            "headers": [],
+            "body": null
+          }
+        },
+        {
+          "name": "PayloadJPEG",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/image/jpeg",
+            "headers": [],
+            "body": null
+          }
+        },
+        {
+          "name": "PayloadSVG",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/image/svg",
+            "headers": [],
+            "body": null
+          }
+        },
+        {
+          "name": "PayloadWEBP",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/image/webp",
+            "headers": [],
+            "body": null
+          }
+        }
+      ],
+      "dirChildren": []
+    },
+    {
+      "name": "FilePathResolution",
+      "authChildren": [],
+      "reqtChildren": [
+        {
+          "name": "AbsolutePath - File",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Regular",
+              "value": "C:\\Users\\bogdan.nikolic\\Repositories\\httpiness\\test\\manual\\PayloadTextFile.txt",
+              "valueType": "File"
+            }
+          },
+          "defaultBody": {
+            "type": "Regular",
+            "value": "C:\\Repositories\\httpiness\\test\\manual\\PayloadTextFile.txt",
+            "valueType": "File"
+          }
+        },
+        {
+          "name": "AbsolutePath - MultipartForm",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Form",
+              "encoding": "multipart/form-data",
+              "records": [
+                {
+                  "name": "File",
+                  "value": "C:\\Users\\bogdan.nikolic\\Repositories\\httpiness\\test\\manual\\PayloadTextFile.txt",
+                  "type": "File"
+                },
+                {
+                  "name": "Text",
+                  "value": "Hello hello hello",
+                  "type": "Text"
+                }
+              ]
+            }
+          },
+          "defaultBody": {
+            "type": "Form",
+            "encoding": "multipart/form-data",
+            "records": [
+              {
+                "name": "File",
+                "value": "C:\\Repositories\\httpiness\\test\\manual\\PayloadTextFile.txt",
+                "type": "File"
+              },
+              {
+                "name": "Text",
+                "value": "Hello hello hello",
+                "type": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AbsolutePath - UrlEncodedForm",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Form",
+              "encoding": "application/x-www-form-urlencoded",
+              "records": [
+                {
+                  "name": "File",
+                  "value": "C:\\Users\\bogdan.nikolic\\Repositories\\httpiness\\test\\manual\\PayloadTextFile.txt",
+                  "type": "File"
+                },
+                {
+                  "name": "Text",
+                  "value": "Hello hello hello",
+                  "type": "Text"
+                }
+              ]
+            }
+          },
+          "defaultBody": {
+            "type": "Form",
+            "encoding": "application/x-www-form-urlencoded",
+            "records": [
+              {
+                "name": "File",
+                "value": "C:\\Repositories\\httpiness\\test\\manual\\PayloadTextFile.txt",
+                "type": "File"
+              },
+              {
+                "name": "Text",
+                "value": "Hello hello hello",
+                "type": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "name": "RelativePath - File",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Regular",
+              "value": "PayloadTextFile.txt",
+              "valueType": "File"
+            }
+          },
+          "defaultBody": {
+            "type": "Regular",
+            "value": "PayloadTextFile.txt",
+            "valueType": "File"
+          }
+        },
+        {
+          "name": "RelativePath - MultipartForm",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Form",
+              "encoding": "multipart/form-data",
+              "records": [
+                {
+                  "name": "File",
+                  "value": "PayloadTextFile.txt",
+                  "type": "File"
+                },
+                {
+                  "name": "Text",
+                  "value": "Hello hello hello",
+                  "type": "Text"
+                }
+              ]
+            }
+          },
+          "defaultBody": {
+            "type": "Form",
+            "encoding": "multipart/form-data",
+            "records": [
+              {
+                "name": "File",
+                "value": "PayloadTextFile.txt",
+                "type": "File"
+              },
+              {
+                "name": "Text",
+                "value": "Hello hello hello",
+                "type": "Text"
+              }
+            ]
+          }
+        },
+        {
+          "name": "RelativePath - UrlEncodedForm",
+          "rawRequest": {
+            "method": "POST",
+            "url": "https://www.httpbin.org/anything",
+            "headers": [],
+            "body": {
+              "type": "Form",
+              "encoding": "application/x-www-form-urlencoded",
+              "records": [
+                {
+                  "name": "File",
+                  "value": "PayloadTextFile.txt",
+                  "type": "File"
+                },
+                {
+                  "name": "Text",
+                  "value": "Hello hello hello",
+                  "type": "Text"
+                }
+              ]
+            }
+          },
+          "defaultBody": {
+            "type": "Form",
+            "encoding": "application/x-www-form-urlencoded",
+            "records": [
+              {
+                "name": "File",
+                "value": "PayloadTextFile.txt",
+                "type": "File"
+              },
+              {
+                "name": "Text",
+                "value": "Hello hello hello",
+                "type": "Text"
+              }
+            ]
+          }
+        }
+      ],
+      "dirChildren": []
+    },
+    {
+      "name": "AuthenticationInheritance",
+      "authChildren": [
+        {
+          "name": "Default Auth",
+          "authDef": {
+            "type": "Bearer",
+            "bearerToken": "LEVEL_0"
+          }
+        }
+      ],
+      "reqtChildren": [
+        {
+          "name": "Request L0",
+          "rawRequest": {
+            "method": "GET",
+            "url": "https://www.httpbin.org/anything?level=0",
+            "headers": [],
+            "body": null
+          }
+        }
+      ],
+      "dirChildren": [
+        {
+          "name": "LEVEL_1",
+          "authChildren": [
+            {
+              "name": "Default Auth",
+              "authDef": {
+                "type": "Bearer",
+                "bearerToken": "LEVEL_1"
+              }
+            }
+          ],
+          "reqtChildren": [
+            {
+              "name": "Request L1",
+              "rawRequest": {
+                "method": "GET",
+                "url": "https://www.httpbin.org/anything?level=1",
+                "headers": [],
+                "body": null
+              }
+            }
+          ],
+          "dirChildren": [
+            {
+              "name": "LEVEL_2",
+              "authChildren": [
+                {
+                  "name": "Default Auth",
+                  "authDef": {
+                    "type": "Bearer",
+                    "bearerToken": "LEVEL_2"
+                  }
+                }
+              ],
+              "reqtChildren": [
+                {
+                  "name": "Request L2",
+                  "rawRequest": {
+                    "method": "GET",
+                    "url": "https://www.httpbin.org/anything?level=2",
+                    "headers": [],
+                    "body": null
+                  }
+                }
+              ],
+              "dirChildren": [
+                {
+                  "name": "LEVEL_3",
+                  "authChildren": [
+                    {
+                      "name": "Default Auth",
+                      "authDef": {
+                        "type": "Bearer",
+                        "bearerToken": "LEVEL_3"
+                      }
+                    }
+                  ],
+                  "reqtChildren": [
+                    {
+                      "name": "Request L3",
+                      "rawRequest": {
+                        "method": "GET",
+                        "url": "https://www.httpbin.org/anything?level=3",
+                        "headers": [],
+                        "body": null
+                      }
+                    },
+                    {
+                      "name": "Request Local",
+                      "rawRequest": {
+                        "method": "GET",
+                        "url": "https://www.httpbin.org/anything?local",
+                        "headers": [],
+                        "body": null
+                      },
+                      "auth": {
+                        "name": null,
+                        "authDef": {
+                          "type": "Bearer",
+                          "bearerToken": "LOCAL"
+                        },
+                        "location": null
+                      }
+                    }
+                  ],
+                  "dirChildren": []
+                }
+              ]
+            },
+            {
+              "name": "LEVEL_1a",
+              "authChildren": [
+                {
+                  "name": "SomeAuth",
+                  "authDef": {
+                    "type": "Bearer",
+                    "bearerToken": "FORBIDDEN"
+                  }
+                }
+              ],
+              "reqtChildren": [],
+              "dirChildren": [
+                {
+                  "name": "LEVEL_1a",
+                  "authChildren": [],
+                  "reqtChildren": [
+                    {
+                      "name": "Request L1a",
+                      "rawRequest": {
+                        "method": "GET",
+                        "url": "https://www.httpbin.org/anything?level=1a",
+                        "headers": [],
+                        "body": null
+                      }
+                    }
+                  ],
+                  "dirChildren": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "reqtChildren": [],
+  "parameters": {
+    "API_KEY": "****API_KEY****",
+    "BEARER_TOKEN": "****BEARER_TOKEN****",
+    "BASIC_USERNAME": "****BASIC_USERNAME****",
+    "BASIC_PASSWORD": "****BASIC_PASSWORD****",
+    "BOX_CLIENT_ID": "6f2p2h9uy83famjh558e3dqlqxtoasju",
+    "BOX_CLIENT_SECRET": "******sensitive******",
+    "BOX_FOLDER_ID": "0",
+    "BOX_TOKEN": "******sensitive******",
+    "BOX_FILE_NAME": "Hello2.txt",
+    "BOX_FILE_ID": "1108527214135",
+    "DROPBOX_APP_KEY": "******sensitive******",
+    "DROPBOX_APP_SECRET": "******sensitive******",
+    "DROPBOX_DIR_PATH": "",
+    "DROPBOX_FILE_PATH": "/ble.png",
+    "DROPBOX_THUMBNAIL_SIZE": "w256h256",
+    "PF_CLIENT_ID": "******sensitive******",
+    "PF_CLIENT_SECRET": "******sensitive******",
+    "TWITTER_CLIENT_ID": "******sensitive******",
+    "TWITTER_CLIENT_SECRET": "******sensitive******",
+    "TWITTER_TOKEN": "******sensitive******",
+    "GITHUB_CLIENT_ID": "******sensitive******",
+    "GITHUB_CLIENT_SECRET": "******sensitive******",
+    "GITHUB_ACCESS_TOKEN": "******sensitive******",
+    "NOT_SENT": "",
+    "QKEY_1": "******sensitive******",
+    "QKEY_2": "qkey2",
+    "QVAL_2": "******sensitive******",
+    "QKEY_3a": "qkey3a",
+    "QKEY_3b": "******sensitive******",
+    "QVAL_3a": "qval3a",
+    "QVAL_3b": "******sensitive******",
+    "VALUE_2": "Value2",
+    "KEY_3": "******sensitive******",
+    "KEY_4": "Key4",
+    "VALUE_4": "******sensitive******",
+    "KEY_5a": "Key5a",
+    "KEY_5b": "******sensitive******",
+    "VALUE_5a": "Value5a",
+    "VALUE_5b": "******sensitive******",
+    "LINE_2": "Line2",
+    "PRESET_VALUE1": "ORIGINAL_VALUE",
+    "PRESET_VALUE2": "******sensitive******",
+    "PRESET_VALUE3": "ORIGINAL_VALUE"
+  },
+  "parameterPresets": [
+    {
+      "name": "Development",
+      "macros": [
+        {
+          "name": "PRESET_VALUE1",
+          "value": "VALUE1_DEV"
+        },
+        {
+          "name": "PRESET_VALUE2",
+          "value": "VALUE2_DEV"
+        },
+        {
+          "name": "PRESET_VALUE3",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Production",
+      "macros": [
+        {
+          "name": "PRESET_VALUE1",
+          "value": "VALUE1_PROD"
+        },
+        {
+          "name": "PRESET_VALUE2",
+          "value": "VALUE2_PROD"
+        },
+        {
+          "name": "PRESET_VALUE3",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Default",
+      "macros": [
+        {
+          "name": "PRESET_VALUE1",
+          "value": "ORIGINAL_VALUE"
+        },
+        {
+          "name": "PRESET_VALUE2",
+          "value": "ORIGINAL_VALUE"
+        },
+        {
+          "name": "PRESET_VALUE3",
+          "value": "ORIGINAL_VALUE"
+        }
+      ]
+    }
+  ]
+}

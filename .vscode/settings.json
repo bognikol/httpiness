@@ -1,0 +1,9 @@
+{
+    "[markdown]": {
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false,
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        "editor.rulers": [80]
+    }
+}

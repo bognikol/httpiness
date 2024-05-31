@@ -1,0 +1,54 @@
+{
+  "name": "httpiness",
+  "version": "1.4.3",
+  "appId": "org.httpiness",
+  "description": "Developer-oriented HTTP client for slalom API testing.",
+  "main": "./main.js",
+  "scripts": {
+    "clean": "git clean -dfX",
+    "build:dev": "webpack --config-name renderer-dev",
+    "start:dev": "webpack --config-name renderer-dev --config-name main-dev && electron ./dist/electron-workspace",
+    "start:dev:clean": "npm run clean && npm install && npm run start:dev",
+    "build:prod": "webpack --config-name main-dist --config-name renderer-dist && cd dist/electron-workspace && electron-builder",
+    "build:prod:clean": "npm run clean && npm install && npm run build:prod",
+    "start:prod": "run-script-os",
+    "start:prod:macos": "open -n ./dist/bin/mac/httpiness.app",
+    "start:prod:win32": ".\\dist\\bin\\win-unpacked\\httpiness.exe",
+    "start:prod:clean": "npm run build:prod:clean && npm run start:prod",
+    "test": "jest",
+    "lint": "eslint ./src ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bognikol/httpiness.git"
+  },
+  "author": "Bogdan Nikolic<bogdan_nikolic@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
+    "cross-env": "^7.0.3",
+    "electron": "^30.0.9",
+    "electron-builder": "^24.13.3",
+    "eslint": "^8.26.0",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "formidable": "^2.0.1",
+    "jest-environment-jsdom": "^29.7.0",
+    "native-ext-loader": "^2.3.0",
+    "node-loader": "^2.0.0",
+    "run-script-os": "^1.1.6",
+    "ts-jest": "^29.1.2",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "aflon": "^2.0.10",
+    "keytar": "^7.9.0",
+    "mime-db": "^1.52.0",
+    "uuid": "^8.3.2"
+  }
+}

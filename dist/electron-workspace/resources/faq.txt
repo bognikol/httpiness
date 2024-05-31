@@ -1,0 +1,383 @@
+>>section-
+Getting started
+
+>>question-
+What is the easiest way to get started?
+
+>>answer-
+When you start httpiness, Welcome screen will be shown. Click 'Send http request' label on Welcome screen and a simple predefined request will appear in the Workspace. Press 'Send' button to send request.
+
+>>question-
+Why is httpiness unique?
+
+>>answer-
+Software engineers, while developing APIs, often need to send multiple requests before they can send request they want to test. For example, if developers want to test request which deletes entry in database, they need to authenticate, create entity, query entity to validate its creation, delete entity (which is a request to be tested), and then query entity again (to validate that delete did its job). This is what we call slalom testing. Httpiness is created with this workflow in mind. Httpiness offers simplicity and effective parametrization strategy to maximize development efficiency. For example, httpiness is one of rare clients which render whole request in the single view (no tabs for every part of request).
+
+>>section-
+Collections
+
+>>question-
+How to create new collection?
+
+>>answer-
+Click 'Create new collection' button in header of Request Browser; then specify where to create collection file.
+Collections are stored in files. All changes are automatically saved to files.
+
+>>question-
+How to import existing collection?
+
+>>answer-
+Click 'Import httpiness or third-party collection' button in header of Request Browser; then specify collection file which you would like to load. Collections which were opened at the moment when httpiness was closed will be automatically loaded at the next startup.
+
+>>question-
+How to import third-party collection?
+
+>>answer-
+Postman collections v2.1 can be converted and imported to httpiness.
+To import Postman collection, you first need to export it from Postman. Consult Postman documentation for details. 
+Once Postman collection is exported, click 'Import httpiness or third-party collection' button in header of Request Browser; then specify Postman collection file which you would like to import. Message box will appear informing you about result of conversion, and then you will be asked to specify name and location of httpiness collection created from Postman collection. 
+Once you do that, new httpiness collection will be automatically opened.
+
+>>question-
+What is the Experiment collection?
+
+>>answer-
+Experiment collection is the collection for sketching and experimenting with requests. This special collection is not stored in file and cannot be shared. There is only single Experiment collection. Show Experiment collection in Request Browser by clicking 'Experiment' button in Request Browser's header.
+
+>>question-
+Should I save collection after making change?
+
+>>answer-
+No. All changes are automatically saved.
+
+>>question-
+Is it possible to work with multiple collections in the same time?
+
+>>answer-
+Yes. Just import multiple collections.
+
+>>question-
+How to track changes in collection?
+
+>>answer-
+If you are an API developer, commit your collection file to repository; then update collection file as your API evolves. Release collection file with each API release. Use your existing versioning system to track and merge changes.
+If you are API consumer, use collection file which is released together with API version you are using.
+
+>>question-
+What if loaded collection file is modified outside httpiness?
+
+>>answer-
+If a loaded collection file is modified outside httpiness there might be a conflict. Httpiness will detect that the file has been modified and will prompt the user asking whether external changes should be discarded or integrated.
+
+>>section-
+HTTP requests
+
+>>question-
+How to create and send new request?
+
+>>answer-
+Once collection is open, hover your mouse cursor over it in Request Browser. Three buttons will appear, including 'Create new request' button, which should be clicked. Default GET request will be created. Specify URL you want to get and press 'Send' button right from the request name.
+
+>>question-
+Is it possible to send a request directly from Request Browser?
+
+>>answer-
+Yes. Hover mouse cursor over request in Request browser. Three buttons will appear, including 'Send' button. Click the 'Send' button.
+
+>>question-
+How to reorder requests in Request Browser?
+
+>>answer-
+Just drag the request up or down and then drop it in desired location.
+
+>>question-
+How to preview request?
+
+>>answer-
+In Request Browser, click request you want to preview. Request will appear in the Workspace. Request-in-preview is always on the top of the Workspace. There can be only single request-in-preview. Click another request in Request Browser to preview another request. Request-in-preview has a bullet left from the HTTP method and its name is written in italics.
+
+>>question-
+What is pinned request?
+
+>>answer-
+Only single request can be in preview at any time. If you want to have multiple requests in the Workspace in the same time, you have to pin them. Pinned request has a triangle left from HTTP method and its name is not in italics.
+
+>>question-
+How to pin request?
+
+>>answer-
+Either click pin icon on previewed request on the top of the Workspace, or click pin icon on request in Request Browser (it will appear when you hover mouse).
+
+>>question-
+Is it possible to collapse pinned request?
+
+>>answer-
+Yes, just click pinned request method or triangle left to method.
+
+>>question-
+How to hide request labels?
+
+>>answer-
+Click the 'Settings' button in the upper right corner of the window, and toggle 'Hide request labels' checkbox.
+
+>>section-
+URL, headers and Body
+
+>>question-
+How to configure url?
+
+>>answer-
+Once request is shown in the Workspace (it is either in-preview or pinned), paste or type url in URL section of request, bellow method. It will be automatically formatted for optimal readability.
+
+>>question-
+How to prevent URL query key-value pair from being sent?
+
+>>answer-
+Any key-value pair in query section of URL or form body will not be sent if its value is empty string. If '=' character is missing though, key alone will be sent. On UI, key-values which are not going to be sent are grayed out.
+
+>>question-
+How to show URL in single line?
+
+>>answer-
+To show URL in single line, click the 'URL' label left from it.
+
+If you want URL to be shown in the single line all the time, click 'Settings' button in the upper right corner of the window, and toggle 'Prefer single-line URL' checkbox.
+
+>>question-
+How to configure request to match cURL command?
+
+>>answer-
+Just paste cURL command to URL text box. The pasted command will be automatically parsed and the request will be modified to match it.
+
+>>question-
+How to configure headers?
+
+>>answer-
+Just type or paste header name and value in last empty header pair on the bottom of Headers section of request. Header name and value are separated by blue colon. Empty headers are not sent and are automatically removed.
+
+>>question-
+How to configure body?
+
+>>answer-
+If you change method to POST, PUT, PATCH or DELETE, body section of request will automatically be shown. Configure it by selecting appropriate body type and optional formatting, and then specify body content.
+
+>>question-
+Is it possible to specify relative file paths in body?
+
+>>answer-
+Yes. All relative file paths will be resolved relative to the location of the collection file.
+
+>>question-
+Is it possible to collapse section of request?
+
+>>answer-
+Yes. Sections URL, Headers, Body and Authentication can be collapsed by clicking section name.
+
+>>question-
+What is 'Body type' dropdown?
+
+>>answer-
+It specifies general type of body you want to send. According to selected body type, UI for configuring body content is updated. Have in mind that body type is not necessarily dependent on 'Content-Type' header which the user may need to configure separately.
+
+>>question-
+What is 'Encode as' dropdown?
+
+>>answer-
+When body type is set to Form, 'Encode as' dropdown specifies how key-value pairs of the form will be encoded in the body. It is either application/x-www-form-urlencoded or multipart/form-data.
+
+When body type is set to Form, httpiness will automatically add appropriate Content-Type header, which can be overwritten.
+
+>>question-
+What is the concept of default body in httpiness?
+
+>>answer-
+Bodies are often changed, but usually there is a single reference body for single request. Httpiness supports saving default body for certain request. Body then can be freely modified only to be later restored to the default.
+To save current body of a request as the default, click 'Save' button in the 'Body' section of the request. To revert current body to the default one, click 'Revert' button next to 'Save'.
+
+>>section-
+Authentication
+
+>>question-
+What does 'Auth' section of request do?
+
+>>answer-
+Auth section represents authentication middleware for that request. In httpiness, authentication middleware does two things:
+(1) obtains authentication data (token in OAuth2, for example), and
+(2) modifies request to insert that data at the moment of sending request.
+Be sure to save any sensitive authentication attributes as locked parameters.
+
+>>question-
+What authentication schemes are supported by httpiness?
+
+>>answer-
+Httpiness currently supports ApiKey, Basic, Bearer and OAuth2 authentication schemes.
+
+>>question-
+What does 'Inherit authentication' do?
+
+>>answer-
+When authentication middleware is set to 'Inherit authentication', which is the default value, httpiness will try to find first standalone authentication definition with name 'Default Auth' in some ancestor directory. If there is such definition, it will be used. Otherwise, there will be no authentication.
+
+>>question-
+How to work with OAuth2?
+
+>>answer-
+Select OAuth2 authentication type in authentication definition and populate attributes. Click 'Execute auth flow' button to execute authentication flow and obtain token. Token will be automatically inserted to 'Authorization' header. Once token expires, it will not be automatically refreshed; you need to execute authentication flow again to obtain new token.
+
+>>question-
+Can httpiness work with signing-based authentication schemes (OAuth1, AWS, etc.)?
+
+>>answer-
+No. Complex authentication protocols which involve signing HTTP request are not supported in httpiness. Support for them is coming soon.
+
+>>section-
+parameters
+
+>>question-
+How to define parameter?
+
+>>answer-
+Any string between parameter opening '${' and parameter closing '}' is consider parameter. If you want to create parameter BASE_URL, just add ${BASE_URL} (to URL string for example). Parameters can be inserted in URL, headers, body and authentication. Parameters are shown in red.
+
+>>question-
+How to specify parameter value?
+
+>>answer-
+All parameters which are used in all requests in the Workspace are listed in Parameters panel. Parameters are grouped per collection. Modify parameter value in Parameters panel.
+If you want to set a parameter to value from some HTTP response, select text in the response, make a right click and then choose parameter you want to set value to.
+
+>>question-
+How do parameters work?
+
+>>answer-
+For example: if parameter SOME_PARAM has value 123, every occurrence of ${SOME_PARAM} will be replaced with string 123.
+
+>>question-
+Are parameters shared between requests in same collection?
+
+>>answer-
+Yes. All requests in same collection share parameters. This way multiple requests can be simultaneously reconfigured by changing value of common parameter.
+
+>>question-
+How to know what parameters are used in any pinned request?
+
+>>answer-
+Move your cursor across requests in the Workspace (either expanded or collapsed). Parameters which are not used in request over which cursor is located will be grayed out.
+
+>>question-
+What is locked parameter?
+
+>>answer-
+Value of locked parameter are not stored in collection file but are encrypted in system's default credential manager (Credential Store on Windows and Keychain Access on macOS), and is read only when needed.
+
+This way values of locked parameters cannot be accidentally shared by sharing collection file.
+
+>>question-
+How to lock parameter?
+
+>>answer-
+Hover mouse over parameter in Parameters panel you want to lock. Lock button will appear. Click lock button to lock the parameter.
+
+>>question-
+How to preview locked parameter?
+
+>>answer-
+Hover mouse over locked parameter you want to preview in Parameters panel. Preview (eye) button will appear. Click preview button to preview parameter. Parameter will be automatically hidden after mouse is moved out.
+
+>>question-
+What are presets?
+
+>>answer-
+Presets simultaneously configure multiple parameters to predefined values. Httpiness allows to define any number of presets, each configuring any number of parameters. Presets are configured and applied per collection. Every collection has two default empty presets: Development and Production.
+
+>>question-
+How to apply presets?
+
+>>answer-
+Parameters panel show all parameters which appear in all requests in the Workspace, grouped by parent collection. Left from the name of collection in Parameters panel, there is the Presets button. Click the button to show context menu, and select the presets you want to apply. By applying preset you configure each parameter in the collection to the value from the preset, if any.
+
+>>question-
+How to configure presets?
+
+>>answer-
+Right click on the collection in Request Browser and select 'Configure presets' button in the context menu. Alternatively, click the Presets button left from the name of collection in Parameters panel (when Parameters panel is not empty), and select 'Configure presets' button in the context menu.
+
+>>question-
+Is it possible to change parameter's value when it is configured by applying preset?
+
+>>answer-
+Yes. Applying a preset does not bound parameters to the values from the preset. Parameters can be changed at any time. Presets can be reapplied at any time as well.
+
+>>question-
+Is it possible to auto-hide parameters panel?
+
+>>answer-
+Yes, when responses are shown in the workspace (not in the console). Click the 'Settings' button in the upper right corner of the window, and toggle 'Auto-hide parameters' checkbox.
+
+>>section-
+Responses and History
+
+>>question-
+Where is the response shown?
+
+>>answer-
+There are two places where the response can be shown: (1) in the 'Responses & History' console which expands when a request is sent, or (2) in the Workspace, next to pinned requests.
+
+By default, the response will be shown in the Workspace if there is enough space on the screen. Otherwise, it will be shown in the console. Click 'Settings' button in the upper right corner of the window to explicitly configure location of the response - console, workspace or automatic.
+
+>>question-
+How to see history of sent requests?
+
+>>answer-
+Previously sent requests are shown in the 'History' panel. When the response is shown in the console, 'History' panel is located left from the response. When the response is shown in the Workspace, click on the request name above the response to show the history.
+
+>>question-
+How to see request execution details?
+
+>>answer-
+In left panel of Responses & History console, click request execution which you want to examine. On the top of right panel, right from the response status, execution details will be shown, including IP addresses, download and upload size, HTTP version and timing.
+
+>>question-
+How to hide response labels?
+
+>>answer-
+Click the 'Settings' button in the upper right corner of the window, and toggle 'Hide response labels' checkbox.
+
+>>question-
+How to resend request from 'History' list of sent requests?
+
+>>answer-
+When 'History' is shown, move you cursor over one of executed requests, and resend button will appear. Click the button to resend the request.
+
+>>question-
+How to clear request history?
+
+>>answer-
+Click 'Clear history' button in header of Responses & History console.
+
+>>section-
+Miscellaneous
+
+>>question-
+How to switch between light and dark themes?
+
+>>answer-
+Click 'Settings' button in the upper right corner of the window, and then click 'Switch to light theme' or 'Switch to dark theme'. (Which text is shown depends on current theme.)
+
+>>question-
+How to zoom in and zoom out?
+
+>>answer-
+Click 'Settings' button in the upper right corner of the window, and then click 'Zoom in', 'Zoom out' or 'Reset zoom'.
+
+>>question-
+How to resize Request Browser and Parameters panels?
+
+>>answer-
+Move cursor over right edge of Request Browser or left edge of Parameters panel. The edge will become blue. Drag the edge to resize panels.
+
+>>question-
+How to send feedback or report an issue?
+
+>>answer-
+Click 'Settings' button in the upper right corner of the window, and then click 'Give feedback' or 'Report an issue'.

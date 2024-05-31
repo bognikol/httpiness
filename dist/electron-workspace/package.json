@@ -1,0 +1,36 @@
+{
+    "name": "httpiness",
+    "version": "1.4.3",
+    "description": "httpiness in developer-oriented parametric HTTP client for slalom API testing.",
+    "main": "./main.js",
+    "scripts": {},
+    "author": "Bogdan Nikolic<bogdan_nikolic@hotmail.com>",
+    "license": "MIT",
+    "build": {
+        "appId": "org.httpiness",
+        "productName": "httpiness",
+        "artifactName": "${productName}_${os}_${arch}_${version}.${ext}",
+        "copyright": "Copyright (c) 2023-2024 httpiness contributors",
+        "directories": {
+            "output": "../bin"
+        },
+        "win": {
+            "icon": "resources/images/HttpinessIconWin.png"
+        },
+        "nsis": {
+            "oneClick": false
+        },
+        "mac": {
+            "icon": "resources/images/HttpinessIconMacOS.png",
+            "hardenedRuntime": true,
+            "entitlements": "entitlements.mac.plist",
+            "entitlementsInherit": "entitlements.mac.plist",
+            "target": [
+                { "target": "default", "arch": [ "x64" ] }
+            ]
+        }
+    },
+    "devDependencies": {
+        "electron": "30.0.9"
+    }
+}
